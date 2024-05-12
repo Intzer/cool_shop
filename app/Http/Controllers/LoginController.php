@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class LoginController extends Controller
 {
     public function index()
     {
-        return view('register');
+        return view('login');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'firstname' => ['required', 'min:3', 'alpha_dash'],
+            //'login' => ['required', 'min:3', 'alpha_dash', 'unique:users'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'confirmed', 'min:4'],
         ]);
 
-        $customer = new Customer([
-            'firstname' => $validated['firstname'],
+        $user = new User([
+            'login' => $validated['login'],
             'email' => $validated['email'],
             'password' => $validated['password'],
         ]);
-        $customer->save();
+        $user->save();
 
         auth()->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
 
