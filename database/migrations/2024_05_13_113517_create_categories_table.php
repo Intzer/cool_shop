@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
+
             $table->foreignId('parent_id')->nullable();
             $table->string('name');
-            $table->timestamps();
-            $table->integer('child_count');
+            $table->integer('child_count')->default(0);
         });
 
         Schema::table('categories', function (Blueprint $table) {

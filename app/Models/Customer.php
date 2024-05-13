@@ -18,6 +18,8 @@ class Customer extends Authenticatable
      */
     protected $fillable = [
         'firstname',
+        'lastname',
+        'middlename',
         'email',
         'password',
     ];
@@ -42,6 +44,10 @@ class Customer extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'firstname' => 'string',
+            'lastname' => 'string',
+            'middlename' => 'string',
+            'is_active' => 'bool',
         ];
     }
 }
