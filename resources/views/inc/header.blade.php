@@ -17,7 +17,7 @@
                 </a>
 
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="{{ route('products.index') }}" class="nav-link px-2 link-secondary">Catalog</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
@@ -25,8 +25,8 @@
                 </ul>
 
                 <div class="col-md-3 text-end">
-                    <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
+                    <a href="{{ route('login.index') }}" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="{{ route('register.index') }}" class="btn btn-primary">Register</a>
                 </div>
             </header>
         </div>
