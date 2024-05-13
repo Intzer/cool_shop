@@ -16,7 +16,7 @@ class RegisterController extends Controller
     {
         $validated = $request->validate([
             'firstname' => ['required', 'min:3', 'alpha_dash'],
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email', 'unique:customers'],
             'password' => ['required', 'confirmed', 'min:4'],
         ]);
 
@@ -27,8 +27,8 @@ class RegisterController extends Controller
         ]);
         $customer->save();
 
-        auth()->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
+        auth()->attempt(['email' => $validated['email'], 'password' => $validated['password']], true);
 
-        return redirect()->back()->with(['message' => 'Ypu fuckein diud it bidghtk']);
+        return redirect()->route('products.index')->with(['message' => 'You successfully registered.']);
     }
 }
