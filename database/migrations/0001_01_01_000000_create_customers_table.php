@@ -25,6 +25,12 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
         });
 
+        DB::table('customers')->insert([
+            'email' => 'admin@mail.ru',
+            'firstname' => 'admin',
+            'password' => bcrypt('admin'),
+        ]);
+
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');

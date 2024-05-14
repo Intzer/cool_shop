@@ -7,5 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductInfo extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'product_id',
+        'purchases_count',
+        'title',
+        'description',
+
+        'count',
+        'sku',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'product_id' => 'integer',
+            'purchases_count' => 'integer',
+            'title' => 'string',
+            'description' => 'string',
+
+            'count' => 'integer',
+            'sku' => 'string',
+        ];
+    }
 }
