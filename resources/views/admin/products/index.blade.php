@@ -8,7 +8,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">{{ __('Admin panel') }}</a></li>
-                <li class="breadcrumb-item" aria-current="page">{{ __('Categories') }}</li>
+                <li class="breadcrumb-item" aria-current="page">{{ __('Products') }}</li>
             </ol>
         </nav>
 
@@ -22,18 +22,18 @@
 
         <div class="row">
             <div class="col-12 col-lg-6">
-                <form action="{{ route('admin.categories.store') }}" method="post">
+                <form action="{{ route('admin.products.store') }}" method="post">
                     @csrf
-                    <h1 class="h3 mb-3 fw-normal">{{ __('Add category') }}</h1>
+                    <h1 class="h3 mb-3 fw-normal">{{ __('Add product') }}</h1>
                     <div class="mb-3">
                         <label for="name" class="m-0">{{ __('Name') }}</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                     </div>
 
                     <div class="mb-3">
-                        <label for="parent">{{ __('Parent category') }}</label>
-                        <select class="form-control" id="parent" name="parent">
-                            <option value="-1" selected>{{ __("Do not have a parent") }}</option>
+                        <label for="category">{{ __('Category') }}</label>
+                        <select class="form-control" id="category" name="category_id">
+                            <option value="-1" selected>{{ __("Choose") }}</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -45,25 +45,23 @@
             </div>
 
             <div class="col-12 col-lg-6">
-                <h1 class="h3 mb-3 fw-normal">{{ __("Categories") }}</h1>
-                @if($categories->isNotEmpty())
+                <h1 class="h3 mb-3 fw-normal">{{ __("Products") }}</h1>
+                @if($products->isNotEmpty())
                 <div class="table-responsive">
                     <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>{{ __('Name') }}</th>
-                                <th>{{ __('Parent Category') }}</th>
                                 <th>{{ __('Control') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $category)
+                            @foreach($products as $product)
                                 <tr>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->parent === null ? "-" : $category->parent->name }}</td>
+                                    <td>{{ $product->name }}</td>
                                     <td>
-                                        <a href="{{ route('admin.categories.edit', $category->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
-                                        <form class="d-inline-block" method="post" action="{{ route('admin.categories.delete', $category->id) }}">
+                                        <a href="{{ route('admin.products.edit', $product->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
+                                        <form class="d-inline-block" method="post" action="{{ route('admin.products.delete', $product->id) }}">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
@@ -75,25 +73,25 @@
                     </table>
                     <nav>
                         <ul class="pagination justify-content-center">
-                            @if ($categories->currentPage() > 1)
-                                <li class="page-item"><a class="page-link" href="{{ route('admin.categories.index', ['page' => $categories->currentPage() - 1]) }}">&laquo;</a></li>
+                            @if ($products->currentPage() > 1)
+                                <li class="page-item"><a class="page-link" href="{{ route('admin.categories.index', ['page' => $products->currentPage() - 1]) }}">&laquo;</a></li>
                             @endif
 
-                            @for ($i = 1; $i <= $categories->lastPage(); $i++)
-                                <li class="page-item {{ ($categories->currentPage() == $i) ? 'active' : '' }}">
+                            @for ($i = 1; $i <=$products->lastPage(); $i++)
+                                <li class="page-item {{ ($products->currentPage() == $i) ? 'active' : '' }}">
                                     <a class="page-link" href="{{ route('admin.categories.index', ['page' => $i]) }}">{{ $i }}</a>
                                 </li>
                             @endfor
 
-                            @if ($categories->currentPage() < $categories->lastPage())
-                                <li class="page-item"><a class="page-link" href="{{ route('admin.categories.index', ['page' => $categories->currentPage() + 1]) }}">&raquo;</a></li>
+                            @if ($products->currentPage() <$products->lastPage())
+                                <li class="page-item"><a class="page-link" href="{{ route('admin.categories.index', ['page' => $products->currentPage() + 1]) }}">&raquo;</a></li>
                             @endif
                         </ul>
                     </nav>
                 </div>
                 @else
                     <div class="text-center">
-                        {{ __('There is no categories now.') }}
+                        {{ __('There is no products now.') }}
                     </div>
                 @endif
             </div>

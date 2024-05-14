@@ -23,7 +23,7 @@
 
         <div class="row">
             <div class="col-12 col-lg-6 offset-lg-3">
-                <form action="{{ route('categories.update', $category->id) }}" method="post">
+                <form action="{{ route('admin.categories.update', $category->id) }}" method="post">
                     @csrf
                     @method('put')
                     <h1 class="h3 mb-3 fw-normal">Edit category</h1>

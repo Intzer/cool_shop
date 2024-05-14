@@ -29,11 +29,7 @@
                 </a>
 
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{{ route('products.index') }}" class="nav-link px-2 link-secondary">{{ __('Catalog') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('Features') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('Pricing') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('FAQs') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('About') }}</a></li>
+                    <li><a href="{{ route('products.index') }}" class="nav-link px-2 link-dark">{{ __('Catalog') }}</a></li>
                 </ul>
 
                 <div class="col-md-4 text-end">

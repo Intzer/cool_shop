@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,5 +18,18 @@ class AdminController extends Controller
     {
         $categories = Category::query()->paginate(10);
         return view('admin.categories.index', compact('categories'));
+    }
+
+    public function products()
+    {
+        $products = Product::query()->paginate(10);
+        $categories = Category::all();
+        return view('admin.products.index', compact('products', 'categories'));
+    }
+
+    public function customers()
+    {
+        $customers = Customer::query()->paginate(10);
+        return view('admin.customers.index', compact('customers'));
     }
 }

@@ -43,7 +43,7 @@ class CategoriesController extends Controller
     {
         $categories = Category::all();
         $category = Category::query()->findOrFail($id);
-        return view('category.edit', compact('categories', 'category'));
+        return view('admin.categories.edit', compact('categories', 'category'));
     }
 
     public function update(Request $request, int $id)
