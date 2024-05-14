@@ -22,7 +22,7 @@
         @endif
 
         <div class="row">
-            <div class="col-12 col-lg-6 offset-lg-3">
+            <div class="col-12 col-lg-6">
                 <form action="{{ route('admin.categories.update', $category->id) }}" method="post">
                     @csrf
                     @method('put')
@@ -46,13 +46,45 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label>Attributes...</label>
-                        Soon....
-                    </div>
-
                     <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Save</button>
                 </form>
+            </div>
+            <div class="col-12 col-lg-6">
+                <h1 class="h3 mb-3 fw-normal">{{ __('Add attribute set') }}</h1>
+                <form method="post" action="{{ route('admin.categories.attachattributeset', $category->id) }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="attribute_set">{{ __('Attribute set') }}</label>
+                        <select class="form-control" id="attribute_set" name="attribute_set">
+                            @if($attributeSets->isNotEmpty())
+                                @foreach($attributeSets as $attributeSet)
+                                    <option value="{{ $attributeSet->id }}">{{ $attributeSet->name }}</option>
+                                @endforeach
+                            @else
+                                <option value="-1" selected>No more attribute sets</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Add</button>
+                </form>
+                <h1 class="h3 mb-3 fw-normal">{{ __('Have attribute sets') }}</h1>
+                <form method="post" action="{{ route('admin.categories.detachattributeset', $category->id) }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="attribute_set">{{ __('Attribute set') }}</label>
+                        <select class="form-control" id="attribute_set" name="attribute_set">
+                            @if($category->attributeSets->isNotEmpty())
+                                @foreach($category->attributeSets as $attributeSet)
+                                    <option value="{{ $attributeSet->id }}">{{ $attributeSet->name }}</option>
+                                @endforeach
+                            @else
+                                <option value="-1" selected>No more attribute sets</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Remove</button>
             </div>
         </div>
     </div>

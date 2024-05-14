@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttributeSet;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,6 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-
         return view('categories', compact('categories'));
     }
 
@@ -60,7 +60,12 @@ class CategoriesController extends Controller
     {
         $categories = Category::all();
         $category = Category::query()->findOrFail($id);
-        return view('admin.categories.edit', compact('categories', 'category'));
+
+        $categoryAttributeSetsID = $category->attributeSets; // Получаем массив идентификаторов категорий товара
+        $categoryAttributeSetsID = $category->attributeSets->pluck('id')->toArray(); // Получаем массив идентификаторов категорий товара
+        $attributeSets = AttributeSet::all()->except($categoryAttributeSetsID);
+
+        return view('admin.categories.edit', compact('categories', 'category', 'attributeSets'));
     }
 
     public function update(Request $request, int $id)
@@ -100,5 +105,25 @@ class CategoriesController extends Controller
         }
 
         return redirect()->back()->with(['message' => __('Successfully updated')]);
+    }
+
+    public function attachattributeset(Request $request, int $id)
+    {
+        $category = Category::query()->findOrFail($id);
+        $validated = $request->validate([
+            'attribute_set' => ['required', 'exists:attribute_sets,id'],
+        ]);
+        $category->attributeSets()->attach($validated['attribute_set']);
+        return redirect()->back()->with(['message' => __('You successfully attach attribute set')]);
+    }
+
+    public function detachattributeset(Request $request, int $id)
+    {
+        $category = Category::query()->findOrFail($id);
+        $validated = $request->validate([
+            'attribute_set' => ['required', 'exists:attribute_sets,id'],
+        ]);
+        $category->attributeSets()->detach($validated['attribute_set']);
+        return redirect()->back()->with(['message' => __('You successfully detach attribute set')]);
     }
 }

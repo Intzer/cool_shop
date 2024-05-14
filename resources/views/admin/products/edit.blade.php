@@ -21,11 +21,11 @@
         @endif
 
         <div class="row">
-            <div class="col-12 col-lg-6 offset-lg-3">
+            <div class="col-12 col-lg-6">
+                <h1 class="h3 mb-3 fw-normal">Edit product</h1>
                 <form action="{{ route('admin.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
-                    <h1 class="h3 mb-3 fw-normal">Edit product</h1>
                     <div class="mb-3">
                         <label for="title" class="m-0">{{ __('Title') }}</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="{{ __('title') }}" value="{{ $product->info->title }}">
@@ -61,17 +61,45 @@
                         <input type="text" class="form-control" id="price" name="price" placeholder="100" value="{{ $product->price->price }}">
                     </div>
 
+                    <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Save</button>
+                </form>
+            </div>
+            <div class="col-12 col-lg-6">
+                <h1 class="h3 mb-3 fw-normal">{{ __('Add to category') }}</h1>
+                <form method="post" action="{{ route('admin.products.tocategory', $product->id) }}">
+                    @csrf
                     <div class="mb-3">
-                        <label for="parent">{{ __('Category') }}</label>
-                        <select class="form-control" id="parent" name="category_id">
-                            @foreach($categories as $category)
-                                <option {{ $product->category_id === $category->id ? "selected" : "" }} value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
+                        <label for="category">{{ __('Category') }}</label>
+                        <select class="form-control" id="category" name="category">
+                            @if($categories->isNotEmpty())
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            @else
+                                <option value="-1" selected>No more categories</option>
+                            @endif
                         </select>
                     </div>
 
-                    <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Save</button>
+                    <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Add</button>
                 </form>
+                <h1 class="h3 mb-3 fw-normal">{{ __('Now in category') }}</h1>
+                <form method="post" action="{{ route('admin.products.fromcategory', $product->id) }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="category">{{ __('Category') }}</label>
+                        <select class="form-control" id="category" name="category">
+                            @if($product->categories->isNotEmpty())
+                                @foreach($product->categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            @else
+                                <option value="-1" selected>No more categories</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Remove</button>
             </div>
         </div>
     </div>

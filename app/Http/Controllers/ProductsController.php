@@ -13,8 +13,18 @@ class ProductsController extends Controller
 {
     public function index()
     {
+        $categories = Category::query()->whereNull('parent_id')->get();
         $products = Product::all();
-        return view('products', compact('products'));
+
+        $category_id = request()->get('category');
+        if (isset($category_id))
+        {
+            $products = $products->filter(function ($product) use ($category_id) {
+                return $product->categories->isNotEmpty() && $product->categories->contains('id', $category_id);
+            });
+        }
+
+        return view('products', compact('products', 'categories'));
     }
 
     public function show($product_id)
@@ -52,7 +62,6 @@ class ProductsController extends Controller
             'title' => ['required', 'min:3', 'alpha_dash'],
             'price' => ['required', 'decimal:0,2', 'min:1', 'max:10000'],
             'description' => ['required', 'string', 'max:100000'],
-            'category_id' => ['required', 'exists:categories,id'],
             'image' => [
                 'nullable',
                 File::types(['jpg', 'jpeg', 'png', 'gif'])
@@ -80,7 +89,6 @@ class ProductsController extends Controller
             'product_id' => $product->id,
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'category_id' => $validated['category_id'],
             'image' => $image,
         ]);
         $productInfo->save();
@@ -97,7 +105,8 @@ class ProductsController extends Controller
     public function edit(Request $request, int $id)
     {
         $product = Product::query()->findOrFail($id);
-        $categories = Category::all();
+        $productCategoriesID = $product->categories->pluck('id')->toArray(); // Получаем массив идентификаторов категорий товара
+        $categories = Category::all()->except($productCategoriesID);
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
@@ -150,5 +159,25 @@ class ProductsController extends Controller
         $product = Product::query()->findOrFail($id);
         $product->delete();
         return redirect()->back()->with(['message' => __('Deleted successfully')]);
+    }
+
+    public function tocategory(Request $request, int $id)
+    {
+        $product = Product::query()->findOrFail($id);
+        $validated = $request->validate([
+            'category' => ['required', 'exists:categories,id'],
+        ]);
+        $product->categories()->attach($validated['category']);
+        return redirect()->back()->with(['message' => __('You successfully attach category')]);
+    }
+
+    public function fromcategory(Request $request, int $id)
+    {
+        $product = Product::query()->findOrFail($id);
+        $validated = $request->validate([
+            'category' => ['required', 'exists:categories,id'],
+        ]);
+        $product->categories()->detach($validated['category']);
+        return redirect()->back()->with(['message' => __('You successfully detach category')]);
     }
 }

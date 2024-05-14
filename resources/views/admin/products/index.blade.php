@@ -56,16 +56,6 @@
                         <input type="text" class="form-control" id="price" name="price" placeholder="100">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="category_id">{{ __('Category') }}</label>
-                        <select class="form-control" id="category_id" name="category_id">
-                            <option value="-1" selected>{{ __("Choose") }}</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <button class="w-100 btn btn-lg btn-primary my-2" type="submit">{{ __("Add") }}</button>
                 </form>
             </div>

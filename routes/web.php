@@ -29,12 +29,16 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/categories/{category}/edit', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
     Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('admin.categories.update');
     Route::delete('/admin/categories/{category}', [CategoriesController::class, 'delete'])->name('admin.categories.delete');
+    Route::post('/admin/categories/{product}/tocategory', [CategoriesController::class, 'attachattributeset'])->name('admin.categories.attachattributeset');
+    Route::post('/admin/categories/{product}/fromcategory', [CategoriesController::class, 'detachattributeset'])->name('admin.categories.detachattributeset');
 
     Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products.index');
     Route::post('/admin/products', [ProductsController::class, 'store'])->name('admin.products.store');
     Route::get('/admin/products/{product}/edit', [ProductsController::class, 'edit'])->name('admin.products.edit');
     Route::put('/admin/products/{product}', [ProductsController::class, 'update'])->name('admin.products.update');
     Route::delete('/admin/products/{product}', [ProductsController::class, 'delete'])->name('admin.products.delete');
+    Route::post('/admin/products/{product}/tocategory', [ProductsController::class, 'tocategory'])->name('admin.products.tocategory');
+    Route::post('/admin/products/{product}/fromcategory', [ProductsController::class, 'fromcategory'])->name('admin.products.fromcategory');
 
     Route::get('/admin/customers', [AdminController::class, 'customers'])->name('admin.customers.index');
     Route::post('/admin/customers', [CustomerController::class, 'store'])->name('admin.customers.store');
@@ -56,9 +60,6 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::get('/', [ProductsController::class, 'index'])->name('products.index');
-
-Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
-Route::get('/categories/{category}', [CategoriesController::class, 'show'])->name('categories.show');
 
 Route::get('/products/{product}', [ProductsController::class, 'show'])->name('products.show');
 Route::get('/products/category/{category}', [ProductsController::class, 'showCategory'])->name('products.show.category');

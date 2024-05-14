@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('name');
-            $table->foreignId('attribute_template_id');
+            $table->foreignId('attribute_template_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
         });
 
         Schema::create('attributes', function (Blueprint $table) {
