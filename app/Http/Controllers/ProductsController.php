@@ -7,7 +7,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductInfo;
 use App\Models\ProductPrice;
-use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
