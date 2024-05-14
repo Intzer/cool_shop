@@ -22,7 +22,7 @@
 
         <div class="row">
             <div class="col-12 col-lg-6 offset-lg-3">
-                <form action="{{ route('admin.products.update', $product->id) }}" method="post">
+                <form action="{{ route('admin.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <h1 class="h3 mb-3 fw-normal">Edit product</h1>
@@ -45,6 +45,15 @@
                                     });
                             };
                         </script>
+                    </div>
+
+                    <div>
+                        <img width="40%" src="{{ $product->info->image == null ? asset('storage/files/images/none.jpg') : asset('storage/files/images/'.$product->info->image) }}" alt="Image">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="m-0">{{ __('Image') }}</label>
+                        <input type="file" class="form-control" id="image" name="image">
                     </div>
 
                     <div class="mb-3">

@@ -22,7 +22,7 @@
 
         <div class="row">
             <div class="col-12 col-lg-6">
-                <form action="{{ route('admin.products.store') }}" method="post">
+                <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <h1 class="h3 mb-3 fw-normal">{{ __('Add product') }}</h1>
                     <div class="mb-3">
@@ -44,6 +44,11 @@
                                     });
                             };
                         </script>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="m-0">{{ __('Image') }}</label>
+                        <input type="file" class="form-control" id="image" name="image">
                     </div>
 
                     <div class="mb-3">

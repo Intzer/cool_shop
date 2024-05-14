@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('purchases_count')->default(0);
             $table->string('title');
             $table->text('description');
+            $table->text('image')->nullable();
 
             $table->integer('count')->nullable();
             $table->string('sku')->nullable();

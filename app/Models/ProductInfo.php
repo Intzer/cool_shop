@@ -12,6 +12,7 @@ class ProductInfo extends Model
         'purchases_count',
         'title',
         'description',
+        'image',
 
         'count',
         'sku',
@@ -24,6 +25,7 @@ class ProductInfo extends Model
             'purchases_count' => 'integer',
             'title' => 'string',
             'description' => 'string',
+            'image' => 'string',
 
             'count' => 'integer',
             'sku' => 'string',

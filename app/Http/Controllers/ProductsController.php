@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductInfo;
 use App\Models\ProductPrice;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class ProductsController extends Controller
 {
@@ -52,7 +53,25 @@ class ProductsController extends Controller
             'price' => ['required', 'decimal:0,2', 'min:1', 'max:10000'],
             'description' => ['required', 'string', 'max:100000'],
             'category_id' => ['required', 'exists:categories,id'],
+            'image' => [
+                'nullable',
+                File::types(['jpg', 'jpeg', 'png', 'gif'])
+                    ->min(1)
+                    ->max(10000)
+            ],
         ]);
+
+        $image = null;
+        if (isset($validated['image']))
+        {
+            $file = $request->file('image');
+            if (!$file) {
+                return redirect()->back()->withErrors(['image' => __('Error of loading image.')]);
+            }
+            $fileName = uniqid().'_'.$file->getClientOriginalName();
+            $file->storeAs('public', 'files/images/' . $fileName);
+            $image = $fileName;
+        }
 
         $product = new Product();
         $product->save();
@@ -62,12 +81,13 @@ class ProductsController extends Controller
             'title' => $validated['title'],
             'description' => $validated['description'],
             'category_id' => $validated['category_id'],
+            'image' => $image,
         ]);
         $productInfo->save();
 
         $productPrice = new ProductPrice([
-           'product_id' => $product->id,
-           'price' => $validated['price'],
+            'product_id' => $product->id,
+            'price' => $validated['price'],
         ]);
         $productPrice->save();
 
@@ -88,16 +108,35 @@ class ProductsController extends Controller
             'price' => ['required', 'decimal:0,2', 'min:1', 'max:10000'],
             'description' => ['required', 'string', 'max:100000'],
             'category_id' => ['required', 'exists:categories,id'],
+            'image' => [
+                'nullable',
+                File::types(['jpg', 'jpeg', 'png', 'gif'])
+                    ->min(1)
+                    ->max(10000)
+            ],
         ]);
 
         $product = Product::query()->findOrFail($id);
         $productInfo = ProductInfo::query()->where('product_id', $id)->firstOrFail();
         $productPrice = ProductPrice::query()->where('product_id', $id)->firstOrFail();
 
+        $image = null;
+        if (isset($validated['image']))
+        {
+            $file = $request->file('image');
+            if (!$file) {
+                return redirect()->back()->withErrors(['image' => __('Error of loading image.')]);
+            }
+            $fileName = uniqid().'_'.$file->getClientOriginalName();
+            $file->storeAs('public', 'files/images/' . $fileName);
+            $image = $fileName;
+        }
+
         $productInfo->update([
-           'title' => $validated['title'],
-           'description' => $validated['description'],
-           'category_id' => $validated['category_id'],
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'category_id' => $validated['category_id'],
+            'image' => $image,
         ]);
         $productPrice->update([
            'price' => $validated['price'],

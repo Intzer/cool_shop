@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('parent_id')->nullable();
-            $table->string('sku');
+            $table->string('sku')->nullable();
+            $table->integer('count')->nullable();
             $table->timestamps();
-            $table->integer('count');
         });
 
         Schema::table('products', function (Blueprint $table) {
