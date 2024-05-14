@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -22,6 +23,30 @@ return new class extends Migration
             $table->integer('count')->nullable();
             $table->string('sku')->nullable();
         });
+
+        DB::table('product_infos')->insert([
+            'product_id' => 1,
+            'title' => 'first',
+            'description' => 'second',
+        ]);
+
+        DB::table('product_infos')->insert([
+            'product_id' => 2,
+            'title' => 'first',
+            'description' => 'second',
+        ]);
+
+        DB::table('product_infos')->insert([
+            'product_id' => 3,
+            'title' => 'first',
+            'description' => 'second',
+        ]);
+
+        DB::table('product_infos')->insert([
+            'product_id' => 4,
+            'title' => 'first',
+            'description' => 'second',
+        ]);
     }
 
     /**

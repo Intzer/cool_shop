@@ -27,6 +27,16 @@ return new class extends Migration
             'product_id' => 2,
             'price' => 32.69,
         ]);
+
+        DB::table('product_prices')->insert([
+            'product_id' => 3,
+            'price' => 32.69,
+        ]);
+
+        DB::table('product_prices')->insert([
+            'product_id' => 4,
+            'price' => 32.69,
+        ]);
     }
 
     /**
