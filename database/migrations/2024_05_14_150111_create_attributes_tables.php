@@ -13,17 +13,23 @@ return new class extends Migration
     {
         Schema::create('attribute_templates', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
+
             $table->string('name');
         });
 
         Schema::create('attribute_sets', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
+
             $table->string('name');
             $table->foreignId('attribute_template_id');
         });
 
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
+
             $table->string('value');
             $table->foreignId('attribute_set_id');
             $table->foreignId('product_id');

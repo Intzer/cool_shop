@@ -10,6 +10,8 @@
                     <a href="{{ route('admin.categories.index') }}" class="btn btn-primary">{{ __('Categories Control') }}</a>
                     <a href="{{ route('admin.customers.index') }}" class="btn btn-primary mt-2">{{ __('Customers Control') }}</a>
                     <a href="{{ route('admin.products.index') }}" class="btn btn-primary mt-2">{{ __('Products Control') }}</a>
+                    <a href="{{ route('admin.attributesets.index') }}" class="btn btn-primary mt-2">{{ __('Attribute Sets Control') }}</a>
+                    <a href="{{ route('admin.attributetemplates.index') }}" class="btn btn-primary mt-2">{{ __('Attribute Templates Control') }}</a>
                 </div>
             </div>
         </div>

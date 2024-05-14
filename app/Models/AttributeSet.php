@@ -10,12 +10,14 @@ class AttributeSet extends Model
 {
     protected $fillable = [
         'name',
+        'attribute_template_id'
     ];
 
     protected function casts(): array
     {
         return [
             'name' => 'string',
+            'attribute_template_id' => 'integer',
         ];
     }
 

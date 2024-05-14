@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttributeSetsController;
+use App\Http\Controllers\AttributeTemplatesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
@@ -39,6 +41,18 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customers.edit');
     Route::put('/admin/customers/{customer}', [CustomerController::class, 'update'])->name('admin.customers.update');
     Route::delete('/admin/customers/{customer}', [CustomerController::class, 'delete'])->name('admin.customers.delete');
+
+    Route::get('/admin/attributesets', [AdminController::class, 'attributeSets'])->name('admin.attributesets.index');
+    Route::post('/admin/attributesets', [AttributeSetsController::class, 'store'])->name('admin.attributesets.store');
+    Route::get('/admin/attributesets/{attributeSet}/edit', [AttributeSetsController::class, 'edit'])->name('admin.attributesets.edit');
+    Route::put('/admin/attributesets/{attributeSet}', [AttributeSetsController::class, 'update'])->name('admin.attributesets.update');
+    Route::delete('/admin/attributesets/{attributeSet}', [AttributeSetsController::class, 'delete'])->name('admin.attributesets.delete');
+
+    Route::get('/admin/attributetemplates', [AdminController::class, 'attributeTemplates'])->name('admin.attributetemplates.index');
+    Route::post('/admin/attributetemplates', [AttributeTemplatesController::class, 'store'])->name('admin.attributetemplates.store');
+    Route::get('/admin/attributetemplates/{attributeTemplate}/edit', [AttributeTemplatesController::class, 'edit'])->name('admin.attributetemplates.edit');
+    Route::put('/admin/attributetemplates/{attributeTemplate}', [AttributeTemplatesController::class, 'update'])->name('admin.attributetemplates.update');
+    Route::delete('/admin/attributetemplates/{attributeTemplate}', [AttributeTemplatesController::class, 'delete'])->name('admin.attributetemplates.delete');
 });
 
 Route::get('/', [ProductsController::class, 'index'])->name('products.index');

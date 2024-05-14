@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribute;
+use App\Models\AttributeSet;
+use App\Models\AttributeTemplate;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
@@ -31,5 +34,18 @@ class AdminController extends Controller
     {
         $customers = Customer::query()->paginate(10);
         return view('admin.customers.index', compact('customers'));
+    }
+
+    public function attributeSets()
+    {
+        $attributeSets = AttributeSet::query()->paginate(10);
+        $attributeTemplates = AttributeTemplate::all();
+        return view('admin.attributeSets.index', compact('attributeSets', 'attributeTemplates'));
+    }
+
+    public function attributeTemplates()
+    {
+        $attributeTemplates = AttributeTemplate::query()->paginate(10);
+        return view('admin.attributeTemplates.index', compact('attributeTemplates'));
     }
 }
