@@ -16,6 +16,10 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('customer_id');
         });
+
+        DB::table('admins')->insert([
+            'customer_id' => 1,
+        ]);
     }
 
     /**

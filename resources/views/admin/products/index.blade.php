@@ -26,13 +26,34 @@
                     @csrf
                     <h1 class="h3 mb-3 fw-normal">{{ __('Add product') }}</h1>
                     <div class="mb-3">
-                        <label for="name" class="m-0">{{ __('Name') }}</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        <label for="title" class="m-0">{{ __('Title') }}</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Your title">
                     </div>
 
                     <div class="mb-3">
-                        <label for="category">{{ __('Category') }}</label>
-                        <select class="form-control" id="category" name="category_id">
+                        <label for="description" class="m-0">{{ __('Description') }}</label>
+                        <textarea id="description" name="description"></textarea>
+                        <script>
+                            window.onload = function() {
+                                ClassicEditor.create(document.querySelector('#description'))
+                                    .then(editor => {
+
+                                    })
+                                    .catch( error => {
+                                        console.error(error);
+                                    });
+                            };
+                        </script>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="m-0">{{ __('Price') }}</label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="100">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="category_id">{{ __('Category') }}</label>
+                        <select class="form-control" id="category_id" name="category_id">
                             <option value="-1" selected>{{ __("Choose") }}</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -51,14 +72,14 @@
                     <table class="table text-center">
                         <thead>
                             <tr>
-                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Title') }}</th>
                                 <th>{{ __('Control') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->info->title }}</td>
                                     <td>
                                         <a href="{{ route('admin.products.edit', $product->id)  }}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
                                         <form class="d-inline-block" method="post" action="{{ route('admin.products.delete', $product->id) }}">
@@ -98,3 +119,7 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/41.3.1/ckeditor.min.js" integrity="sha512-Qhh+VfoTh+a2tbFw+u86fMKfvyNyHR4aTVbivQAIkFQPcXFa1S0ZlTcib0HXiT4XBVS0a/FtSGamQ9YfXIaPRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endpush

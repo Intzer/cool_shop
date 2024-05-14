@@ -27,12 +27,17 @@
                     @method('put')
                     <h1 class="h3 mb-3 fw-normal">Edit product</h1>
                     <div class="mb-3">
-                        <label for="name" class="m-0">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $product->name }}">
+                        <label for="title" class="m-0">{{ __('Title') }}</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ __('title') }}" value="{{ $product->info->title }}">
                     </div>
 
                     <div class="mb-3">
-                        <label for="parent">Category</label>
+                        <label for="title" class="m-0">{{ __('Price') }}</label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="100" value="{{ $product->price }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="parent">{{ __('Category') }}</label>
                         <select class="form-control" id="parent" name="category_id">
                             @foreach($categories as $category)
                                 <option {{ $product->category_id === $category->id ? "selected" : "" }} value="{{ $category->id }}">{{ $category->name }}</option>
@@ -46,3 +51,7 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/41.3.1/ckeditor.min.js" integrity="sha512-Qhh+VfoTh+a2tbFw+u86fMKfvyNyHR4aTVbivQAIkFQPcXFa1S0ZlTcib0HXiT4XBVS0a/FtSGamQ9YfXIaPRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endpush
