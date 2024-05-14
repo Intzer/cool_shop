@@ -13,6 +13,16 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function info(): HasOne
+    {
+        return $this->hasOne(ProductInfo::class, 'product_id', 'id');
+    }
+
+    public function price(): HasOne
+    {
+        return $this->hasOne(ProductPrice::class, 'product_id', 'id');
+    }
+
     public function attributes()
     {
         return $this->hasMany(Attribute::class);
