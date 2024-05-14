@@ -18,11 +18,11 @@
                 @csrf
                 <h1 class="h3 mb-3 fw-normal">Create new account</h1>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="name">
+                    <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('firstname') }}" placeholder="name">
                     <label for="firstname">Name</label>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="name@example.com">
                     <label for="email">Email address</label>
                 </div>
                 <div class="form-floating my-2">

@@ -17,4 +17,9 @@ class ProductsController extends Controller
     {
 
     }
+
+    public function delete(Request $request, int $id)
+    {
+
+    }
 }

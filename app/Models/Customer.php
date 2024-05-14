@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -49,5 +50,10 @@ class Customer extends Authenticatable
             'middlename' => 'string',
             'is_active' => 'bool',
         ];
+    }
+
+    public function admin(): HasOne
+    {
+        return $this->HasOne(Admin::class, 'customer_id', 'id');
     }
 }

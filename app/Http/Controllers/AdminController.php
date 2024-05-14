@@ -9,7 +9,12 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::all();
-        return view('admin', compact('categories'));
+        return view('admin.index');
+    }
+
+    public function categories()
+    {
+        $categories = Category::query()->paginate(10);
+        return view('admin.categories.index', compact('categories'));
     }
 }

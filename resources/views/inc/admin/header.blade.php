@@ -28,27 +28,8 @@
                     {{ config('app.name') }}
                 </a>
 
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{{ route('products.index') }}" class="nav-link px-2 link-secondary">{{ __('Catalog') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('Features') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('Pricing') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('FAQs') }}</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">{{ __('About') }}</a></li>
-                </ul>
-
-                <div class="col-md-4 text-end">
-                    @auth()
-                        {{ __('Hello') }}, <b>{{ auth()->user()->firstname }}</b>
-                        @if (auth()->user()->admin)
-                            <a href="{{ route('admin.index') }}" class="btn btn-primary ms-3">{{ __('Admin Panel') }} <i class="fa-solid fa-star"></i></a>
-                        @endif
-                        <a href="{{ route('login.logout') }}" class="btn btn-primary ms-2">{{ __('Logout') }} <i class="fa-solid fa-right-from-bracket"></i></a>
-                    @endauth
-
-                    @guest()
-                        <a href="{{ route('login.index') }}" class="btn btn-outline-primary me-2">{{ __('Login') }} <i class="fa-solid fa-right-to-bracket"></i></a>
-                        <a href="{{ route('register.index') }}" class="btn btn-primary">{{ __('Register') }} <i class="fa-solid fa-plus"></i></a>
-                    @endguest
+                <div class="col-md-3 text-end">
+                    <a href="{{ route('products.index') }}" class="btn btn-primary ms-3">{{ __('To site') }} <i class="fa-solid fa-briefcase"></i></a>
                 </div>
             </header>
         </div>

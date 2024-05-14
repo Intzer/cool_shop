@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Category extends Model
 {
@@ -18,9 +19,13 @@ class Category extends Model
     {
         return [
             'name' => 'string',
-            'parent_id' => 'integer',
             'child_count' => 'integer',
         ];
+    }
+
+    public function parent(): HasOne
+    {
+        return $this->hasOne(Category::class, 'id', 'parent_id');
     }
 
     public function categories(): BelongsToMany

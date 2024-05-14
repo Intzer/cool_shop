@@ -19,13 +19,16 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        auth()->attempt(['email' => $validated['email'], 'password' => $validated['password']], true);
-        return redirect()->route('products.index')->with(['message' => 'You successfully logged in.']);
+        if (auth()->attempt(['email' => $validated['email'], 'password' => $validated['password']], true)) {
+            return redirect()->route('products.index')->with(['message' => __('You successfully logged in.')]);
+        } else {
+            return redirect()->back()->withInput()->withErrors(['message' => __('Wrong login data.')]);
+        }
     }
 
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with(['message' => __('You successfully logout.')]);
     }
 }

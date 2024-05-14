@@ -28,7 +28,6 @@ class RegisterController extends Controller
         $customer->save();
 
         auth()->attempt(['email' => $validated['email'], 'password' => $validated['password']], true);
-
-        return redirect()->route('products.index')->with(['message' => 'You successfully registered.']);
+        return redirect()->route('products.index')->with(['message' => __('You successfully registered.')]);
     }
 }
