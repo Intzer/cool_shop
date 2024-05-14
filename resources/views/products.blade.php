@@ -5,9 +5,11 @@
 @section('content')
     @if($products->isNotEmpty())
         @foreach($products as $product)
-            <div class="text-center d-flex align-items-center p-4">
-                <h1 class="h3 fw-normal m-auto">SKU: {{ $product->sku }}</h1>
-                <h1 class="h3 fw-normal m-auto">Remain: {{ $product->count }}</h1>
+            <div class="text-center align-items-center p-4">
+                <div class="h3 fw-normal m-auto">SKU: {{ $product->sku }}</div>
+                <div class="h3 fw-normal m-auto">Remain: {{ $product->count }}</div>
+                <a href="{{ route('products.show', $product->id) }}" class="nav-link px-2 link-dark">{{ __('Show more') }}</a>
+                <hr>
             </div>
         @endforeach
     @else
