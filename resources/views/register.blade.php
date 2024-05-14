@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('header.title', __('Sign Up'))
+
 @section('content')
     <div class="text-center d-flex align-items-center p-4">
         <main class="form-signin m-auto">

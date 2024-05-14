@@ -22,4 +22,10 @@ class LoginController extends Controller
         auth()->attempt(['email' => $validated['email'], 'password' => $validated['password']], true);
         return redirect()->route('products.index')->with(['message' => 'You successfully logged in.']);
     }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('products.index');
+    }
 }
