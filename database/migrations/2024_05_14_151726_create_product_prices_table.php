@@ -20,22 +20,7 @@ return new class extends Migration
 
         DB::table('product_prices')->insert([
             'product_id' => 1,
-            'price' => 55.99,
-        ]);
-
-        DB::table('product_prices')->insert([
-            'product_id' => 2,
-            'price' => 32.69,
-        ]);
-
-        DB::table('product_prices')->insert([
-            'product_id' => 3,
-            'price' => 32.69,
-        ]);
-
-        DB::table('product_prices')->insert([
-            'product_id' => 4,
-            'price' => 32.69,
+            'price' => 100.00,
         ]);
     }
 

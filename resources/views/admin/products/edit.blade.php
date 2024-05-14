@@ -66,7 +66,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <h1 class="h3 mb-3 fw-normal">{{ __('Add to category') }}</h1>
-                <form method="post" action="{{ route('admin.products.tocategory', $product->id) }}">
+                <form class="mb-3" method="post" action="{{ route('admin.products.tocategory', $product->id) }}">
                     @csrf
                     <div class="mb-3">
                         <label for="category">{{ __('Category') }}</label>
@@ -83,8 +83,9 @@
 
                     <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Add</button>
                 </form>
+
                 <h1 class="h3 mb-3 fw-normal">{{ __('Now in category') }}</h1>
-                <form method="post" action="{{ route('admin.products.fromcategory', $product->id) }}">
+                <form class="mb-3" method="post" action="{{ route('admin.products.fromcategory', $product->id) }}">
                     @csrf
                     <div class="mb-3">
                         <label for="category">{{ __('Category') }}</label>
@@ -100,6 +101,27 @@
                     </div>
 
                     <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Remove</button>
+                </form>
+
+                <h1 class="h3 mb-3 fw-normal">{{ __('Fill attributes of categories') }}</h1>
+                <form method="post" action="{{ route('admin.products.fillattributes', $product->id) }}">
+                    @csrf
+
+                    @foreach($attributeSets as $attributeSet)
+                        <div class="mb-3">
+                            <label for="attributeSet{{ $attributeSet->id }}">{{ $attributeSet->name }}</label>
+
+                            @if ($attributes->isNotEmpty() && $attributes->contains('id', $attributeSet->id))
+                                <input id="attributeSet{{ $attributeSet->id }}" type="text" class="form-control" placeholder="Your value" value="{{ $attributes->where('id', $attributeSet->id)->first()->value }}">
+                            @else
+                                <input id="attributeSet{{ $attributeSet->id }}" type="text" class="form-control" placeholder="Your value" value="">
+                            @endif
+
+                        </div>
+                    @endforeach
+
+                    <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Save</button>
+                </form>
             </div>
         </div>
     </div>

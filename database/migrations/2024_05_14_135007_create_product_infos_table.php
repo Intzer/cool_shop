@@ -27,26 +27,8 @@ return new class extends Migration
 
         DB::table('product_infos')->insert([
             'product_id' => 1,
-            'title' => 'first',
-            'description' => 'second',
-        ]);
-
-        DB::table('product_infos')->insert([
-            'product_id' => 2,
-            'title' => 'first',
-            'description' => 'second',
-        ]);
-
-        DB::table('product_infos')->insert([
-            'product_id' => 3,
-            'title' => 'first',
-            'description' => 'second',
-        ]);
-
-        DB::table('product_infos')->insert([
-            'product_id' => 4,
-            'title' => 'first',
-            'description' => 'second',
+            'title' => 'CS 1.6 game activation key',
+            'description' => 'You can easy activate the game by this key.',
         ]);
     }
 

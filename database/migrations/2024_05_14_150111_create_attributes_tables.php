@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('attribute_templates', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->string('name');
         });
 
@@ -36,45 +35,42 @@ return new class extends Migration
         });
 
         DB::table('attribute_templates')->insert([
-            'name' => 'description',
-        ]);
-
-        DB::table('attribute_templates')->insert([
-            'name' => 'weight',
-        ]);
-
-        DB::table('attribute_sets')->insert([
-            'name' => 'description',
-            'attribute_template_id' => 1,
+            ['name' => 'game'],
+            ['name' => 'releasedDate'],
+            ['name' => 'type'],
         ]);
 
         DB::table('attribute_sets')->insert([
-            'name' => 'weight',
-            'attribute_template_id' => 2,
+            [
+                'name' => 'Game',
+                'attribute_template_id' => 1,
+            ],
+            [
+                'name' => 'Date of release',
+                'attribute_template_id' => 2,
+            ],
+            [
+                'name' => 'Type',
+                'attribute_template_id' => 3,
+            ]
         ]);
 
         DB::table('attributes')->insert([
-            'value' => 'Good product',
-            'attribute_set_id' => 1,
-            'product_id' => 1,
-        ]);
-
-        DB::table('attributes')->insert([
-            'value' => '35',
-            'attribute_set_id' => 2,
-            'product_id' => 1,
-        ]);
-
-        DB::table('attributes')->insert([
-            'value' => 'Good another product',
-            'attribute_set_id' => 1,
-            'product_id' => 2,
-        ]);
-
-        DB::table('attributes')->insert([
-            'value' => '50',
-            'attribute_set_id' => 2,
-            'product_id' => 2,
+            [
+                'value' => 'CS 1.6',
+                'attribute_set_id' => 1,
+                'product_id' => 1,
+            ],
+            [
+                'value' => '2001 year',
+                'attribute_set_id' => 2,
+                'product_id' => 1,
+            ],
+            [
+                'value' => 'Activation key',
+                'attribute_set_id' => 3,
+                'product_id' => 1,
+            ]
         ]);
     }
 

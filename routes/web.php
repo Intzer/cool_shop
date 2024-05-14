@@ -39,6 +39,7 @@ Route::middleware('admin')->group(function () {
     Route::delete('/admin/products/{product}', [ProductsController::class, 'delete'])->name('admin.products.delete');
     Route::post('/admin/products/{product}/tocategory', [ProductsController::class, 'tocategory'])->name('admin.products.tocategory');
     Route::post('/admin/products/{product}/fromcategory', [ProductsController::class, 'fromcategory'])->name('admin.products.fromcategory');
+    Route::post('/admin/products/{product}/fillattributes', [ProductsController::class, 'fillattributes'])->name('admin.products.fillattributes');
 
     Route::get('/admin/customers', [AdminController::class, 'customers'])->name('admin.customers.index');
     Route::post('/admin/customers', [CustomerController::class, 'store'])->name('admin.customers.store');
@@ -60,6 +61,4 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::get('/', [ProductsController::class, 'index'])->name('products.index');
-
 Route::get('/products/{product}', [ProductsController::class, 'show'])->name('products.show');
-Route::get('/products/category/{category}', [ProductsController::class, 'showCategory'])->name('products.show.category');
