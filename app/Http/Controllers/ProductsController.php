@@ -24,6 +24,13 @@ class ProductsController extends Controller
         return view('product/show', compact('product'));
     }
 
+    public function showCategory($category_id)
+    {
+        $product = Product::find($category_id);
+
+        return view('product/show', compact('product'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

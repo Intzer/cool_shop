@@ -13,10 +13,19 @@ return new class extends Migration
     {
         Schema::create('product_prices', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignId('product_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->decimal('price');
         });
+
+        DB::table('product_prices')->insert([
+            'product_id' => 1,
+            'price' => 55.99,
+        ]);
+
+        DB::table('product_prices')->insert([
+            'product_id' => 2,
+            'price' => 32.69,
+        ]);
     }
 
     /**
