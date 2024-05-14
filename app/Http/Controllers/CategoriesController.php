@@ -7,6 +7,23 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    public function index()
+    {
+        $categories = Category::all();
+
+        return view('categories', compact('categories'));
+    }
+
+    public function show($category_id)
+    {
+        $category = Category::find($category_id);
+        if ($category->child_count > 0) {
+            return view('category.show', compact('category'));
+        }
+
+        return redirect()->route('products.show.category', [$category_id]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

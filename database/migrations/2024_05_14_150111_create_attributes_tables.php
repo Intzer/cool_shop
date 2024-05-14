@@ -28,6 +28,48 @@ return new class extends Migration
             $table->foreignId('attribute_set_id');
             $table->foreignId('product_id');
         });
+
+        DB::table('attribute_templates')->insert([
+            'name' => 'description',
+        ]);
+
+        DB::table('attribute_templates')->insert([
+            'name' => 'weight',
+        ]);
+
+        DB::table('attribute_sets')->insert([
+            'name' => 'description',
+            'attribute_template_id' => 1,
+        ]);
+
+        DB::table('attribute_sets')->insert([
+            'name' => 'weight',
+            'attribute_template_id' => 2,
+        ]);
+
+        DB::table('attributes')->insert([
+            'value' => 'Good product',
+            'attribute_set_id' => 1,
+            'product_id' => 1,
+        ]);
+
+        DB::table('attributes')->insert([
+            'value' => '35',
+            'attribute_set_id' => 2,
+            'product_id' => 1,
+        ]);
+
+        DB::table('attributes')->insert([
+            'value' => 'Good another product',
+            'attribute_set_id' => 1,
+            'product_id' => 2,
+        ]);
+
+        DB::table('attributes')->insert([
+            'value' => '50',
+            'attribute_set_id' => 2,
+            'product_id' => 2,
+        ]);
     }
 
     /**

@@ -17,6 +17,16 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->decimal('price');
         });
+
+        DB::table('product_prices')->insert([
+            'product_id' => 1,
+            'price' => 55.99,
+        ]);
+
+        DB::table('product_prices')->insert([
+            'product_id' => 2,
+            'price' => 32.69,
+        ]);
     }
 
     /**
