@@ -22,7 +22,7 @@
 
         <div class="row">
             <div class="col-12 col-lg-6 offset-lg-3">
-                <form action="{{ route('admin.categories.update', $product->id) }}" method="post">
+                <form action="{{ route('admin.products.update', $product->id) }}" method="post">
                     @csrf
                     @method('put')
                     <h1 class="h3 mb-3 fw-normal">Edit product</h1>
@@ -32,8 +32,24 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="description" class="m-0">{{ __('Description') }}</label>
+                        <textarea id="description" name="description" style="display: none;"></textarea>
+                        <script>
+                            window.onload = function() {
+                                ClassicEditor.create(document.querySelector('#description'))
+                                    .then(editor => {
+                                        editor.setData('{!! $product->info->description !!}');
+                                    })
+                                    .catch( error => {
+                                        console.error(error);
+                                    });
+                            };
+                        </script>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="title" class="m-0">{{ __('Price') }}</label>
-                        <input type="text" class="form-control" id="price" name="price" placeholder="100" value="{{ $product->price }}">
+                        <input type="text" class="form-control" id="price" name="price" placeholder="100" value="{{ $product->price->price }}">
                     </div>
 
                     <div class="mb-3">

@@ -32,7 +32,7 @@
 
                     <div class="mb-3">
                         <label for="description" class="m-0">{{ __('Description') }}</label>
-                        <textarea id="description" name="description"></textarea>
+                        <textarea id="description" name="description" style="display: none;"></textarea>
                         <script>
                             window.onload = function() {
                                 ClassicEditor.create(document.querySelector('#description'))

@@ -16,12 +16,7 @@ class ProductPrice extends Model
     {
         return [
             'product_id' => 'integer',
-            'price' => 'decimal',
+            'price' => 'decimal:2',
         ];
-    }
-
-    public function product(): BelongsTo
-    {
-    return $this->belongsTo(Product::class, 'id', 'product_id');
     }
 }
