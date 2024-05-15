@@ -36,16 +36,16 @@
                         <h3>{{ __('Buy this product') }}</h3>
                     </div>
                     <div>
-                        @if (auth()->user()->orders->contains('id', $product->id))
-                            {{ __('You are own it!') }}
-                            <a href="{{ $product->info->url }}" target="_blank" class="btn btn-success w-100">{{ __('Download') }}</a>
-                        @else
-
                             @auth
-                                <form action="{{ route('products.buy', $product->id) }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success w-100">{{ $product->price->price }} {{ __('Byn') }}</button>
-                                </form>
+                                @if (auth()->user()->orders->isNotEmpty() && auth()->user()->orders->contains('id', $product->id))
+                                    {{ __('You are own it!') }}
+                                    <a href="{{ $product->info->url }}" target="_blank" class="btn btn-success w-100">{{ __('Download') }}</a>
+                                @else
+                                    <form action="{{ route('products.buy', $product->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success w-100">{{ $product->price->price }} {{ __('Byn') }}</button>
+                                    </form>
+                               @endif
                             @endauth
 
                             @guest
@@ -53,7 +53,6 @@
                                     Please, <a href="{{ route('login.index') }}">login</a> to your account to buy it!
                                 </div>
                             @endguest
-                        @endif
                     </div>
                 </div>
             </div>

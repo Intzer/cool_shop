@@ -30,6 +30,23 @@ return new class extends Migration
             'product_id' => 1,
             'title' => 'CS 1.6 game activation key',
             'description' => 'You can easy activate the game by this key.',
+            'image' => 'cs.jpg',
+            'url' => 'https://disk.yandex.ru/d/9GDroV03cYljvA',
+        ]);
+
+        DB::table('product_infos')->insert([
+            'product_id' => 2,
+            'title' => 'Malwarebytes license key',
+            'description' => 'Protect your computer with pro version of software.',
+            'image' => 'mb.png',
+            'url' => 'https://disk.yandex.ru/d/9GDroV03cYljvA',
+        ]);
+
+        DB::table('product_infos')->insert([
+            'product_id' => 3,
+            'title' => '360 total security license key',
+            'description' => 'Protect your computer with pro version of software.',
+            'image' => '360ts.png',
             'url' => 'https://disk.yandex.ru/d/9GDroV03cYljvA',
         ]);
     }

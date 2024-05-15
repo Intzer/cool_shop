@@ -38,6 +38,7 @@ return new class extends Migration
             ['name' => 'game'],
             ['name' => 'releasedDate'],
             ['name' => 'type'],
+            ['name' => 'duration'],
         ]);
 
         DB::table('attribute_sets')->insert([
@@ -52,6 +53,10 @@ return new class extends Migration
             [
                 'name' => 'Type',
                 'attribute_template_id' => 3,
+            ],
+            [
+                'name' => 'Duration',
+                'attribute_template_id' => 4,
             ]
         ]);
 
@@ -70,6 +75,26 @@ return new class extends Migration
                 'value' => 'Activation key',
                 'attribute_set_id' => 3,
                 'product_id' => 1,
+            ],
+            [
+                'value' => 'Activation key',
+                'attribute_set_id' => 3,
+                'product_id' => 2,
+            ],
+            [
+                'value' => 'Activation key',
+                'attribute_set_id' => 3,
+                'product_id' => 3,
+            ],
+            [
+                'value' => '1 Month',
+                'attribute_set_id' => 4,
+                'product_id' => 2,
+            ],
+            [
+                'value' => '7 Days',
+                'attribute_set_id' => 4,
+                'product_id' => 3,
             ]
         ]);
     }

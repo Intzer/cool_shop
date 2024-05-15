@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('lastname')->nullable();
             $table->string('password');
             $table->boolean('is_active')->default(true);
-            $table->decimal('balance');
+            $table->decimal('balance')->default(0.00);
         });
 
         DB::table('customers')->insert([

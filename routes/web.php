@@ -5,6 +5,7 @@ use App\Http\Controllers\AttributeSetsController;
 use App\Http\Controllers\AttributeTemplatesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
@@ -21,6 +22,7 @@ Route::middleware('guest')->group(function() {
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
+    Route::get('/deposit', [DepositController::class, 'index'])->name('deposit.index');
     Route::post('/products/{product}/buy', [ProductsController::class, 'buy'])->name('products.buy');
 });
 

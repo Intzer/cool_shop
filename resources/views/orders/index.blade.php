@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('header.title', __('Store'))
+@section('header.title', __('Orders'))
 
 @section('content')
     <div class="container">

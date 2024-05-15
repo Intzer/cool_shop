@@ -24,11 +24,13 @@ class CustomerController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'min:1'],
+            'balance' => ['required', 'decimal:0,2'],
         ]);
 
         $customer = Customer::query()->findOrFail($id);
         $customer->update([
             'name' => $validated['name'],
+            'balance' => $validated['balance'],
         ]);
 
         return redirect()->back()->with(['message' => __('Successfully updated')]);

@@ -38,6 +38,11 @@
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $customer->firstname }}">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="balance" class="m-0">Balance</label>
+                        <input type="text" class="form-control" id="balance" name="balance" placeholder="Balance" value="{{ $customer->balance }}">
+                    </div>
+
                     <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Save</button>
                 </form>
             </div>
