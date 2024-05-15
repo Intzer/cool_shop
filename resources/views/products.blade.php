@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('header.title', __('Store'))
+@section('header.title', config('app.name'))
 
 @section('content')
     <div class="container">

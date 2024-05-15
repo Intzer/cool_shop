@@ -1,4 +1,4 @@
-<div class="card p-3">
+<div class="card p-3 mb-3 product-item">
     <div class="row">
         <div class="col-12 col-md-4">
             <a href="{{ route('products.show', $product->id) }}">
@@ -10,12 +10,12 @@
 
         <div class="col-12 col-md-8 d-flex flex-column">
             <div>
-                <a class="text-decoration-none text-dark" href="{{ route('products.show', $product->id) }}">
+                <a class="text-decoration-none product-link" href="{{ route('products.show', $product->id) }}">
                     <b>{{ $product->info->title }}</b>
                 </a>
             </div>
             <div>
-                {{ $product->info->description }}
+                {!! $product->info->description !!}
             </div>
             <div>
                 <span class="badge bg-success"> {{ $product->price->price }} Byn</span>

@@ -23,13 +23,13 @@
 <body>
     <header>
         <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                <a href="{{ route('products.index') }}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none h4">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+                <a href="{{ route('products.index') }}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none h4">
                     {{ config('app.name') }}
                 </a>
 
                 <div class="col-md-3 text-end">
-                    <a href="{{ route('products.index') }}" class="btn btn-primary ms-3">{{ __('To site') }} <i class="fa-solid fa-briefcase"></i></a>
+                    <a href="{{ route('products.index') }}" class="btn btn-secondary ms-3">{{ __('To site') }} <i class="fa-solid fa-briefcase"></i></a>
                 </div>
             </header>
         </div>
