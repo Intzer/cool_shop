@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
+
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+        ];
+    }
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);

@@ -28,10 +28,6 @@
                     {{ config('app.name') }}
                 </a>
 
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{{ route('products.index') }}" class="nav-link px-2 link-dark"><i class="fa-solid fa-box"></i> {{ __('Products') }}</a></li>
-                </ul>
-
                 <div class="col-md-4 text-end">
                     @auth()
                         {{ __('Hello') }}, <b>{{ auth()->user()->firstname }}</b>

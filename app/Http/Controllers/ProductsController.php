@@ -35,10 +35,10 @@ class ProductsController extends Controller
         return view('products', compact('products', 'categories'));
     }
 
-    public function show($product_id)
+    public function show(int $id)
     {
-        $product = Product::query()->find($product_id);
-        return view('product/show', compact('product'));
+        $product = Product::query()->findOrFail($id);
+        return view('product.show', compact('product'));
     }
 
     public function store(Request $request)
