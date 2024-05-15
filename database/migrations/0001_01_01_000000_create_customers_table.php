@@ -23,12 +23,14 @@ return new class extends Migration
             $table->string('lastname')->nullable();
             $table->string('password');
             $table->boolean('is_active')->default(true);
+            $table->decimal('balance');
         });
 
         DB::table('customers')->insert([
             'email' => 'admin@mail.ru',
             'firstname' => 'admin',
             'password' => bcrypt('admin'),
+            'balance' => '1899.99',
         ]);
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\AttributeTemplatesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
+    Route::post('/products/{product}/buy', [ProductsController::class, 'buy'])->name('products.buy');
 });
 
 Route::middleware('admin')->group(function () {

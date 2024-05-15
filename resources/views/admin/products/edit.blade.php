@@ -47,6 +47,11 @@
                         </script>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="url" class="m-0">{{ __('Url') }}</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="{{ __('url') }}" value="{{ $product->info->url }}">
+                    </div>
+
                     <div>
                         <img width="40%" src="{{ $product->info->image == null ? asset('storage/files/images/none.jpg') : asset('storage/files/images/'.$product->info->image) }}" alt="Image">
                     </div>

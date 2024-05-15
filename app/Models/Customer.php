@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,7 @@ class Customer extends Authenticatable
         'middlename',
         'email',
         'password',
+        'balance',
     ];
 
     /**
@@ -49,11 +51,17 @@ class Customer extends Authenticatable
             'lastname' => 'string',
             'middlename' => 'string',
             'is_active' => 'bool',
+            'balance' => 'decimal:2',
         ];
     }
 
     public function admin(): HasOne
     {
         return $this->HasOne(Admin::class, 'customer_id', 'id');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 }

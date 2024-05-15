@@ -23,17 +23,18 @@
 <body>
     <header>
         <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <header class="d-flex align-items-center justify-content-between py-3 mb-4 border-bottom">
                 <a href="{{ route('products.index') }}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none h4">
                     {{ config('app.name') }}
                 </a>
-
-                <div class="col-md-4 text-end">
+                <div class="">
                     @auth()
                         {{ __('Hello') }}, <b>{{ auth()->user()->firstname }}</b>
                         @if (auth()->user()->admin)
-                            <a href="{{ route('admin.index') }}" class="btn btn-primary ms-3">{{ __('Admin Panel') }} <i class="fa-solid fa-star"></i></a>
+                            <a href="{{ route('admin.index') }}" class="btn btn-danger ms-3">{{ __('Admin Panel') }} <i class="fa-solid fa-star"></i></a>
                         @endif
+                        <a href="{{ route('orders.index') }}" class="btn btn-primary ms-2">{{ __('Deposit') }} [{{ auth()->user()->balance }} {{ __('Byn') }}] <i class="fa-solid fa-money-bill"></i></a>
+                        <a href="{{ route('orders.index') }}" class="btn btn-primary ms-2">{{ __('Orders') }} <i class="fa-solid fa-shop"></i></a>
                         <a href="{{ route('login.logout') }}" class="btn btn-primary ms-2">{{ __('Logout') }} <i class="fa-solid fa-right-from-bracket"></i></a>
                     @endauth
 

@@ -13,9 +13,7 @@ class ProductInfo extends Model
         'title',
         'description',
         'image',
-
-        'count',
-        'sku',
+        'url',
     ];
 
     protected function casts(): array
@@ -26,9 +24,7 @@ class ProductInfo extends Model
             'title' => 'string',
             'description' => 'string',
             'image' => 'string',
-
-            'count' => 'integer',
-            'sku' => 'string',
+            'url' => 'string',
         ];
     }
 }

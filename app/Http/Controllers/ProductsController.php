@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Attribute;
 use App\Models\AttributeSet;
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductInfo;
 use App\Models\ProductPrice;
@@ -47,6 +49,7 @@ class ProductsController extends Controller
             'title' => ['required', 'min:3', 'alpha_dash'],
             'price' => ['required', 'decimal:0,2', 'min:1', 'max:10000'],
             'description' => ['required', 'string', 'max:100000'],
+            'url' => ['required', 'string', 'min:1', 'max:256'],
             'image' => [
                 'nullable',
                 File::types(['jpg', 'jpeg', 'png', 'gif'])
@@ -75,6 +78,7 @@ class ProductsController extends Controller
             'title' => $validated['title'],
             'description' => $validated['description'],
             'image' => $image,
+            'url' => $validated['url'],
         ]);
         $productInfo->save();
 
@@ -115,6 +119,7 @@ class ProductsController extends Controller
             'price' => ['required', 'decimal:0,2', 'min:1', 'max:10000'],
             'description' => ['required', 'string', 'max:100000'],
             'category_id' => ['required', 'exists:categories,id'],
+            'url' => ['required', 'string', 'min:1', 'max:256'],
             'image' => [
                 'nullable',
                 File::types(['jpg', 'jpeg', 'png', 'gif'])
@@ -144,6 +149,7 @@ class ProductsController extends Controller
             'description' => $validated['description'],
             'category_id' => $validated['category_id'],
             'image' => $image,
+            'url' => $validated['url'],
         ]);
         $productPrice->update([
            'price' => $validated['price'],
@@ -177,5 +183,30 @@ class ProductsController extends Controller
         ]);
         $product->categories()->detach($validated['category']);
         return redirect()->back()->with(['message' => __('You successfully detach category')]);
+    }
+
+    public function buy(Request $request, int $id)
+    {
+        $product = Product::query()->findOrFail($id);
+        $customer = Customer::query()->findOrFail(auth()->user()->id);
+        if ($customer->orders->contains('id', $product->id)) {
+            return redirect()->back()->with(['message' => 'You are already own this stuff, check orders page.']);
+        }
+
+        if ($customer->balance >= $product->price->price)
+        {
+            $customer->balance -= $product->price->price;
+            $customer->save();
+
+            $order = new Order([
+                'product_id' => $product->id,
+                'customer_id' => $customer->id,
+            ]);
+            $order->save();
+
+            return redirect()->route('orders.index')->with(['message', __('Enjoy your new purchase.')]);
+        }
+
+        return redirect()->back()->withErrors(['message' => __('You do not have enough money.')]);
     }
 }

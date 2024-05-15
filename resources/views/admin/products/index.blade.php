@@ -47,6 +47,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="url" class="m-0">{{ __('Url') }}</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="Url">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="image" class="m-0">{{ __('Image') }}</label>
                         <input type="file" class="form-control" id="image" name="image">
                     </div>

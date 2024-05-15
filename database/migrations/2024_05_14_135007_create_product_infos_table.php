@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('purchases_count')->default(0);
             $table->string('title');
             $table->text('description');
+            $table->string('url');
             $table->text('image')->nullable();
 
             $table->integer('count')->nullable();
@@ -29,6 +30,7 @@ return new class extends Migration
             'product_id' => 1,
             'title' => 'CS 1.6 game activation key',
             'description' => 'You can easy activate the game by this key.',
+            'url' => 'https://disk.yandex.ru/d/9GDroV03cYljvA',
         ]);
     }
 
