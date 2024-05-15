@@ -29,7 +29,7 @@
                 </a>
 
                 <div class="col-md-3 text-end">
-                    <a href="{{ route('products.index') }}" class="btn btn-secondary ms-3">{{ __('To site') }} <i class="fa-solid fa-briefcase"></i></a>
+                    <a href="{{ route('products.index') }}" class="btn btn-secondary ms-3">{{ __('To store') }} >></a>
                 </div>
             </header>
         </div>

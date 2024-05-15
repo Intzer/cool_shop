@@ -39,8 +39,8 @@
                     @endauth
 
                     @guest()
-                        <a href="{{ route('login.index') }}" class="btn btn-outline-primary me-2">{{ __('Login') }} <i class="fa-solid fa-right-to-bracket"></i></a>
-                        <a href="{{ route('register.index') }}" class="btn btn-primary">{{ __('Register') }} <i class="fa-solid fa-plus"></i></a>
+                        <a href="{{ route('login.index') }}" class="btn btn-outline-secondary me-2">{{ __('Login') }} <i class="fa-solid fa-right-to-bracket"></i></a>
+                        <a href="{{ route('register.index') }}" class="btn btn-secondary">{{ __('Register') }} <i class="fa-solid fa-plus"></i></a>
                     @endguest
                 </div>
             </header>

@@ -209,4 +209,9 @@ class ProductsController extends Controller
 
         return redirect()->back()->withErrors(['message' => __('You do not have enough money.')]);
     }
+
+    public function fillattributes()
+    {
+        return redirect()->back()->with(['message' => 'Not emplemented yet.']);
+    }
 }
